@@ -6,20 +6,29 @@ package com.hemebiotech.analytics;
  *
  */
 public class AnalyticsCounter {
-	
 	/**
 	 * Program who read list of symptoms in file and write then with their count in output file
+	 * @param fileInput : Path of input file
+	 * @param fileOutput : Path of output file
+	 */
+	public void analyse(String fileInput, String fileOutput) {
+		ReadSymptomsDataFromFile symptomsFileReader = new ReadSymptomsDataFromFile(fileInput);
+		WriteSymptomsDataToFile symptomsFileWriter = new WriteSymptomsDataToFile(fileOutput);
+		
+		symptomsFileWriter.writeSymptoms(
+				symptomsFileReader.sortSymptomsByKey(
+						symptomsFileReader.getSymptoms()
+				),
+		true, true);
+	}
+	
+	/**
+	 * Application processing
 	 * @param args
 	 * @throws Exception
 	 */
 	public static void main(String args[]) throws Exception {
-		ReadSymptomsDataFromFile symptomsFileReader = new ReadSymptomsDataFromFile("Project02Eclipse/symptoms.txt");
-		WriteSymptomsDataToFile symptomsFileWriter = new WriteSymptomsDataToFile("Project02Eclipse/result.out");
-		
-		symptomsFileWriter.writeSymptoms(
-				symptomsFileReader.sortSymptomsByValue(
-						symptomsFileReader.getSymptoms()
-				),
-		true, true);
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
+		analyticsCounter.analyse("Project02Eclipse/symptoms.txt", "Project02Eclipse/result.out");
 	}
 }
