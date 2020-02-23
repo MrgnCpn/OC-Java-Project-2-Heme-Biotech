@@ -66,19 +66,19 @@ public class ReadSymptomsDataFromFile implements ISymptomReader {
 	 * @see com.hemebiotech.analytics.ISymptomReader #sortSymptomsByValue(Map)
 	 */
 	public Map<String, Integer> sortSymptomsByValue(Map<String, Integer> symptomsList) {
-        List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(symptomsList.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Map.Entry<String, Integer> o1,
-                               Map.Entry<String, Integer> o2) {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
+		List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(symptomsList.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+		    public int compare(Map.Entry<String, Integer> o1,
+				       Map.Entry<String, Integer> o2) {
+			return (o1.getValue()).compareTo(o2.getValue());
+		    }
+		});
 
-        Map<String, Integer> sortedSymptomsByValue = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> entry : list) {
-        	sortedSymptomsByValue.put(entry.getKey(), entry.getValue());
-        }
+		Map<String, Integer> sortedSymptomsByValue = new LinkedHashMap<String, Integer>();
+		for (Map.Entry<String, Integer> entry : list) {
+			sortedSymptomsByValue.put(entry.getKey(), entry.getValue());
+		}
 
-        return sortedSymptomsByValue;
+		return sortedSymptomsByValue;
 	}
 }
